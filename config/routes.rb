@@ -12,4 +12,15 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  root "static_pages#home"
+  get  "service", to: "static_pages#service"
+  get  "about",   to: "static_pages#about"
+  get  "contact", to: "static_pages#contact"
+  get  "faq",     to: "static_pages#faq"
+  resources :clients do
+    resources :tickets, shallow: true do
+      resources :activities, only: [ :index, :create ]
+    end
+    resources :devices, shallow: true
+  end
 end
