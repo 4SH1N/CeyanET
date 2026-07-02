@@ -1,16 +1,9 @@
 class ClientsController < ApplicationController
-  before_action :current_client_params, only: %i[ edit show update ]
+  before_action :authenticate_client!
+  before_action :set_current_client, only: %i[ edit show update ]
 
-  def index
-  end
 
   def edit
-  end
-
-  def new
-  end
-
-  def create
   end
 
   def show
@@ -20,12 +13,10 @@ class ClientsController < ApplicationController
     if @client.update(client_params)
       render partial: "clients/forms/change"
     else
-      render :edit, status: unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  def delete
-  end
 
   private
 
@@ -37,7 +28,7 @@ class ClientsController < ApplicationController
     Date.current
   end
 
-  def current_client_params
+  def set_current_client
     @client = current_client
   end
 end

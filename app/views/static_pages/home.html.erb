@@ -1,0 +1,9 @@
+<%= link_to "SignUp", new_client_session_path %><br><br>
+
+<%= button_to "LogOut", destroy_client_session_path, method: :delete %><br><br>
+
+<% if client_signed_in? %>
+  <h3>Hello
+    <%= current_client.name %></h3>
+  <%= link_to "User Profile:", client_path(current_client) %>
+<% end %>

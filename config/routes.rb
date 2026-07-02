@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get  "about",   to: "static_pages#about"
   get  "contact", to: "static_pages#contact"
   get  "faq",     to: "static_pages#faq"
-  resources :clients do
+  resources :clients, only: [ :show, :edit, :update ] do
     resources :tickets, shallow: true do
       resources :activities, only: [ :index, :create ]
     end
